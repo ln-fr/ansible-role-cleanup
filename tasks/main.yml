@@ -1,2 +1,22 @@
 ---
-# tasks file for freinet-devops.cleanup
+- name: stop services
+  ansible.builtin.systemd:
+    name: apt-daily
+    state: stopped
+  loop:
+    "{{ services_stop }}"
+
+- name: remove users
+  ansible.builtin.user:
+    name: "{{ item }}"
+    state: absent
+    remove: yes
+  loop:
+    "{{ users_remove }}"
+
+- name: remove directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    "{{ directories_remove }}"

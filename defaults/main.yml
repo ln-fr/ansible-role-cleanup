@@ -1,2 +1,12 @@
 ---
-# defaults file for freinet-devops.cleanup
+# list of services to be stopped
+services_stop:
+  - some_service
+
+# list of users to be removed
+users_remove:
+  - some_user
+
+# list of directories to be removed
+directories_remove:
+  - some_directory
